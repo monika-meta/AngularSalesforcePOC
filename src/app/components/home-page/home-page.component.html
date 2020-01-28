@@ -1,0 +1,273 @@
+<div class="Bp_Home_Wrapper">
+  <div class = "container-fluid  Bp_Home_nopadding Bp_Home_main_container" >
+     <div class = "row Bp_Home_marginZero">
+        <div class = "col-sm-8 col-xs-8 Bp_Home_nopadding Bp_home_topCardHead" id = "activeCardList" >
+           <div class = "col-sm-6 col-xs-6 Bp_Home_nopadding Bp_Home_cardTop" *ngFor=" let cardItem of cardResponseResult; let cardItemIndex = index"  >
+              <div *ngIf="cardItem.isLoading" class="Bp_Home_nopadding Bp_Home_cardSize" [ngClass]="'Bp_Home_cardMarginExtendedMock'">
+                 <div class="card Bp_Home_boxdataMock timeline-wrapper">
+                    <div class="card-header Bp_Home_Cardheader timeline-item Bp_Home_nopadding ">
+                       <div class = "col-sm-12 col-xs-12 Bp_Home_Mockdataone">
+                          <img class="Bp_Home_round " src="" alt="" /> 
+                          <div class="Bp_Home_headerText animated-background"></div>
+                       </div>
+                       <ul class="nav  card-header-tabs Bp_Home_datatwoMock col-sm-12 col-xs-12 ">
+                          <li class = "col-sm-3 col-xs-3 Bp_Home_nopadding Bp_Home_listActive " *ngFor=" let mockData of MockTabs">
+                             <a class = "col-sm-12 col-xs-12 ">
+                                <p class="Bp_Home_tabtext animated-background "></p>
+                             </a>
+                          </li>
+                       </ul>
+                    </div>
+                    <div class="Bp_Home_cardblockWrapper">
+                       <div class="Bp_Home_cardblockChildWrapper_Loading">
+                       <div class="row  Bp_Home_marginZero Bp_Home_cardblockchild" *ngFor=" let mockData of MockCardBox">
+                              <div class="Bp_Home_nopadding Bp_Home_blockWidth">
+                                 <div class="Bp_Home_blockText animated-background1"></div>
+                              </div>
+                              <div class="Bp_Home_nopadding Bp_Home_progressBarWidth ">
+                                 <div class="Bp_Home_innerBlockText animated-background1"></div>
+                                 <div class="Bp_Home_innerBlockText2 animated-background1"></div>
+                              </div>
+                           </div>
+                        </div> 
+                    </div>
+                 </div>
+              </div>
+              <div *ngIf="!cardItem.isLoading" class="Bp_Home_nopadding Bp_Home_cardSize" [ngClass]="'Bp_Home_cardSizeExtended'" >
+                 <div class="card Bp_Home_boxdata">
+                    <div class="card-header Bp_Home_Cardheader Bp_Home_nopadding " [ngClass]="{'BP_Home_NoFilterList' : cardItem.FilterList.length == 0 }">
+                       <div class = "col-sm-12 col-xs-12 Bp_Home_dataone">
+                           <i 
+                               class="BP_Home_storeLogo pull-left dark-grey1">
+                           </i>
+                           <div class="Bp_Home_headerTextData ">
+                               <span> {{cardItem.Name}}</span>
+                          </div>
+                       </div>
+                       <ul class="nav  card-header-tabs Bp_Home_datatwo col-sm-12 col-xs-12 " *ngIf = "cardItem.FilterList.length > 0" id = "BP_Home_NavBarListId_{{cardItemIndex}}">
+                         <li class = "col-sm-3 col-xs-3 Bp_Home_nopadding Bp_Home_listActiveList " (click)="cardFilder(filterItem.Name, cardItemIndex)"   *ngFor=" let filterItem of cardItem.FilterList"   > <!-- *ngFor=" let blockItem of cardItem.BlocksList" -->
+                             <a class = "col-sm-12 col-xs-12 " [ngClass]="{'BP_Home_IsActive': filterItem.IsActive}" >
+                              <!-- [ngClass]="{'BP_Home_IsActive' : 'filterItem.IsActive'}" -->
+                                <p class="Bp_Home_tabtext "   >
+                                   {{filterItem.Name}}
+                                </p>
+                             </a>
+                          </li>
+                       </ul>
+                    </div>
+                    <div class="Bp_Home_cardblockWrapper">
+                    <div class="Bp_Home_cardblockChildWrapper" *ngFor=" let blockItem of cardItem.BlockList "
+                       ui-sref="HomeSearch({filterparam: blockItem.HomeSearchFilterJson, additionalFieldParam: blockItem.HomeSearchAdditionalFieldJson})" [ngClass] = "{'defaultCursor':!widgetPermisssions(cardItem.Name, blockItem.Name)}"
+                       >
+                       <div class="row  Bp_Home_marginZero Bp_Home_cardblockchild"> <!--  [ngClass]="{'Bp_Home_card-block' : $index == 0}"  -->
+                           <div class="Bp_Home_nopadding Bp_Home_blockWidth">
+                             <div id="my-element" class="Bp_Home_blockTextData" >
+                                   <span class="Bp_Home_blockTextDataspan" *ngIf="blockItem.Type == 'Currency'"
+                                   >
+                                       {{blockItem.Value}} {{blockItem.Type}}
+
+                                   </span>
+                                   <span class="Bp_Home_blockTextDataspan" *ngIf="blockItem.Type == 'Number'">
+                                      {{blockItem.Value }}
+                                       </span>
+                             </div>
+                          </div>
+                          <div class="Bp_Home_nopadding Bp_Home_progressBarWidth ">
+                               <div class="Bp_Home_innerBlockDataText2">
+                                   {{blockItem.Name}}{{blockItem.Value }}
+                             </div>
+                          </div>
+                       </div>
+                      </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div *ngIf="feedLoading" class = "col-sm-4 col-xs-4 Bp_Home_nopadding Bp_home_topCardHead bp-activity-feed" >
+           <div class="Bp_Home_nopadding Bp_home_LongCardBlockMock">
+              <div class="card-header Bp_Home_Cardheader timeline-item Bp_Home_nopadding ">
+                 <div class = "col-sm-12 col-xs-12 Bp_Home_dataone">
+                    <img class="Bp_Home_round" src="" alt="" /> 
+                    <div class="Bp_Home_headerText animated-background"></div>
+                 </div>
+                 <ul class="nav  card-header-tabs Bp_Home_datatwoActivity col-sm-12 col-xs-12 ">
+                    <li class = "col-sm-3 col-xs-3 Bp_Home_nopadding Bp_Home_listActive ">
+                       <a  class = "col-sm-12 col-xs-12 ">
+                          <p class="Bp_Home_tabtext animated-background"></p>
+                       </a>
+                    </li>
+                    <li class = "col-sm-3 col-xs-3 Bp_Home_nopadding Bp_Home_listActive ">
+                       <a  class = "col-sm-12 col-xs-12 ">
+                          <p class="Bp_Home_tabtext animated-background"></p>
+                       </a>
+                    </li>
+                    <li class = "col-sm-3 col-xs-3 Bp_Home_nopadding Bp_Home_listActive" *ngIf="IsDP360SyncEnabled">
+                       <a  class = "col-sm-12 col-xs-12 ">
+                          <p class="Bp_Home_tabtext animated-background"></p>
+                       </a>
+                    </li>
+                 </ul>
+              </div>
+              <div class="BP_Home_activity_history_Mock">
+                 <div class="row  Bp_Home_marginZero Bp_Home_cardblocklong">
+                    <div class="Bp_Home_nopadding Bp_Home_blockWidth">
+                       <img class="Bp_Home_round_next" src="" alt="" />
+                    </div>
+                    <div class="Bp_Home_nopadding Bp_Home_progressBarWidthLong ">
+                       <div class="Bp_Home_innerBlockTextLong animated-background1"></div>
+                       <div class="Bp_Home_innerBlockText2Long animated-background1"></div>
+                    </div>
+                 </div>
+                 <div class="row  Bp_Home_marginZero Bp_Home_cardblocklong">
+                    <div class="Bp_Home_nopadding Bp_Home_blockWidth">
+                       <img class="Bp_Home_round_next" src="" alt="" />
+                    </div>
+                    <div class="Bp_Home_nopadding Bp_Home_progressBarWidthLong ">
+                       <div class="Bp_Home_innerBlockTextLong animated-background1"></div>
+                       <div class="Bp_Home_innerBlockTextLong2Beta animated-background1"></div>
+                    </div>
+                 </div>
+                 <div class="row  Bp_Home_marginZero Bp_Home_cardblocklong">
+                    <div class="Bp_Home_nopadding Bp_Home_blockWidth">
+                       <img class="Bp_Home_round_next" src="" alt="" />
+                    </div>
+                    <div class="Bp_Home_nopadding Bp_Home_progressBarWidthLong ">
+                       <div class="Bp_Home_innerBlockTextLong animated-background1"></div>
+                       <div class="Bp_Home_innerBlockTextLong2Beta animated-background1"></div>
+                    </div>
+                 </div>
+                 <div class="row  Bp_Home_marginZero Bp_Home_cardblocklong">
+                    <div class="Bp_Home_nopadding Bp_Home_blockWidth">
+                       <img class="Bp_Home_round_next" src="" alt="" />
+                    </div>
+                    <div class="Bp_Home_nopadding Bp_Home_progressBarWidthLong ">
+                       <div class="Bp_Home_innerBlockTextLongBeta animated-background1"></div>
+                       <div class="Bp_Home_innerBlockText2Long animated-background1"></div>
+                    </div>
+                 </div>
+                 <div class="row  Bp_Home_marginZero Bp_Home_cardblocklong">
+                    <div class="Bp_Home_nopadding Bp_Home_blockWidth">
+                       <img class="Bp_Home_round_next" src="" alt="" />
+                    </div>
+                    <div class="Bp_Home_nopadding Bp_Home_progressBarWidthLong ">
+                       <div class="Bp_Home_innerBlockTextLong animated-background1"></div>
+                       <div class="Bp_Home_innerBlockTextLong2Beta animated-background1"></div>
+                       <div class="Bp_Home_innerBlockTextLong2BetaLong animated-background1"></div>
+                    </div>
+                 </div>
+                 <div class="row  Bp_Home_marginZero Bp_Home_cardblocklong">
+                    <div class="Bp_Home_nopadding Bp_Home_blockWidth">
+                       <img class="Bp_Home_round_next" src="" alt="" />
+                    </div>
+                    <div class="Bp_Home_nopadding Bp_Home_progressBarWidthLong ">
+                       <div class="Bp_Home_innerBlockTextLong animated-background1"></div>
+                       <div class="Bp_Home_innerBlockText2Long animated-background1"></div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div *ngIf="!feedLoading" class = "col-sm-4 col-xs-4 Bp_Home_nopadding Bp_home_topCardHead bp-activity-feed" >
+           <div class="Bp_Home_nopadding Bp_home_LongCardBlock">
+              <div class="card-header Bp_Home_Cardheader  Bp_Home_nopadding ">
+                 <div class = "col-sm-12 col-xs-12 Bp_Home_dataone">
+                    <i 
+                       class="BP_Home_storeLogo pull-left dark-grey1">
+                    </i>
+                    <div class="Bp_Home_headerTextData text-capitalize"> 
+                       <span>{{ 'Activity_feed'}}</span>
+                 </div>
+                 </div>
+                    <ul class="nav  card-header-tabs Bp_Home_datatwo col-sm-12 col-xs-12 activityFeed_nav">
+                    <li class = "col-sm-3 col-xs-3 Bp_Home_nopadding Bp_Home_listActiveList " (click) = "ActivityHistoryToggle('My Activity')">
+                       <a class = "col-sm-12 col-xs-12 " [ngClass]="{'BP_Home_IsActive' : DefaultActivityActiveJSON.Type == 'My Activity'}">
+                          <p class="Bp_Home_tabtext text-uppercase">
+                             {{ 'My_activity' }}
+                          </p>
+                       </a>
+                    </li>
+                    <li class = "col-sm-3 col-xs-3 Bp_Home_nopadding Bp_Home_listActiveList " (click) = "ActivityHistoryToggle('Store Activity')">
+                       <a class = "col-sm-12 col-xs-12 " [ngClass]="{'BP_Home_IsActive' : DefaultActivityActiveJSON.Type == 'Store Activity'}">
+                          <p class="Bp_Home_tabtext text-uppercase" >
+                             {{ 'Store_activity'  }}
+                          </p>
+                       </a>
+                    </li>
+                    <li class = "col-sm-3 col-xs-3 Bp_Home_nopadding Bp_Home_listActiveList" *ngIf="IsDP360SyncEnabled">
+                       <a class = "col-sm-12 col-xs-12 bp-text-activiyFeedLast" [ngClass]="{'BP_Home_IsActive' : DefaultActivityActiveJSON.Type == 'Integration'}">
+                          <p class="Bp_Home_tabtext text-uppercase" (click) = "ActivityHistoryToggle('Integration')" >
+                            {{ 'Integration'  }}
+                          </p>
+                          <i  (click) = "syncLeadWithDP360()" class="bp-blue3384ff svg_width_2px"></i>
+                       </a>
+                    </li>
+                 </ul>
+              </div>
+              <div class="BP_Home_activity_history_data" when-scrolled='loadActivityData()'>
+                 <div class="row  Bp_Home_marginZero BP_HomeBorder_Bottom Bp_Home_cardblockChildWrapper" *ngFor=" let activity of ActivityList" style="--bg-hover: {{activity.ColorCode}}" [ngClass]="{'BP_Home_noborder':last}"   
+                   (click)="MoveToSourceEntityState(activity.SourceEntityName, activity.SourceEntityId)"><!-- (click) = "MoveToState(activity.SourceEntityId,activity.SourceEntityName)" -->
+                    <div class = "Bp_Home_cardblocklongBeta">
+                    <!-- <div class="Bp_Home_nopadding" *ngIf = "activity.SourceEntityName == 'Customer Order'">
+                       <i [src]="'{!Application_Images}/Icons/box-order.svg'" style="--activityImg: {{activity.ColorCode}}"
+                           class="BP_Home_storeLogo Bp_home_svgPadding pull-left blue_008DC1 bp-panel-transition">
+                       </i>
+                    </div> -->
+                    <div class="Bp_Home_nopadding" *ngIf = "activity.SourceEntityName == 'Customer Invoice'">
+                       <i style="--activityImg: {{activity.ColorCode}}"
+                           class="BP_Home_storeLogo Bp_home_svgPadding pull-left blue_008DC1 bp-panel-transition">
+                       </i>
+                    </div>
+                    <div class="Bp_Home_nopadding" *ngIf = "activity.SourceEntityName == 'Vendor Order'">
+                       <i  style="--activityImg: {{activity.ColorCode}}"
+                           class="BP_Home_storeLogo Bp_home_svgPadding pull-left blue_008DC1 bp-panel-transition">
+                       </i>
+                    </div>
+                    <div class="Bp_Home_nopadding" *ngIf = "activity.SourceEntityName == 'Vendor Receiving'">
+                       <i style="--activityImg: {{activity.ColorCode}}"
+                           class="BP_Home_storeLogo Bp_home_svgPadding pull-left blue_008DC1 bp-panel-transition">
+                       </i>
+                    </div>
+                    <div class="Bp_Home_nopadding" *ngIf = "activity.SourceEntityName == 'Vendor Invoicing'">
+                       <i  style="--activityImg: {{activity.ColorCode}}"
+                           class="BP_Home_storeLogo Bp_home_svgPadding pull-left blue_008DC1 bp-panel-transition">
+                       </i>
+                    </div>
+                    <div class="Bp_Home_nopadding" *ngIf = "activity.SourceEntityName == 'Customer'">
+                       <i  style="--activityImg: {{activity.ColorCode}}"
+                           class="BP_Home_storeLogo Bp_home_svgPadding pull-left blue_008DC1 bp-panel-transition">
+                       </i>
+                    </div>
+                    <div class="Bp_Home_nopadding" *ngIf = "activity.SourceEntityName == 'Customer Order'">
+                       <i style="--activityImg: {{activity.ColorCode}}"
+                           class="BP_Home_storeLogo Bp_home_svgPadding pull-left blue_008DC1 bp-panel-transition">
+                       </i>
+                    </div>
+                    <div class="Bp_Home_nopadding" *ngIf = "activity.SourceEntityName == 'Vendor'">
+                       <i  style="--activityImg: {{activity.ColorCode}}"
+                           class="BP_Home_storeLogo Bp_home_svgPadding pull-left blue_008DC1 bp-panel-transition">
+                       </i>
+                    </div>
+                      <div class="Bp_Home_nopadding" *ngIf = "activity.SourceEntityName == 'Price File'">
+                       <i 
+                           class="BP_Home_storeLogo Bp_home_svgPadding pull-left blue_008DC1 bp-panel-transition">
+                       </i>
+                    </div>
+                    <div class="Bp_Home_nopadding Bp_Home_progressBarWidthLongData ">
+                       <p [innerHTML] = "to_trusted(activity.FeedText)" class = "BP_Home_ActivityText bp-panel-transition" style="--activityText: {{activity.ColorCode}}" 
+                       ></p>
+                    </div>
+                 </div>
+                 </div>
+              </div>
+           </div>  
+        </div>
+     </div>
+     <div class="row">
+   <div class="Bp_Home_copyrightData Bp_Home_marginZero">
+      <span>{{ 'BlackPurl'  }} <span><i class="fa fa-copyright" aria-hidden="true"></i></span> {{currentDate | date:'yyyy'}}  {{ 'All_rights_reserved'  }}&nbsp;-&nbsp;<a class = "BP_Home_Terms_And_Policy" href = "http://www.blackpurl.com/terms-of-use/" target="_blank">{{ 'Terms_of_use'  }} </a>
+      &nbsp;-&nbsp;<a class = "BP_Home_Terms_And_Policy text-capitalize" href = "http://www.blackpurl.com/privacy-policy/" target="_blank" >{{ 'Privacy_policy'  }} </a></span>
+   </div>
+</div>
+  </div>
+</div>

@@ -1,0 +1,285 @@
+<header class="app-global-header sticky ng-scope" id="app-global-header-container-id" ng-controller="BPGlobalHeader">
+  <div class="app-main-logo">
+      <a class="main-logo" ng-click="BPGlobalHeader.brandNavBarAction($event)" tabindex="1">
+          <img src="/resource/1580114778000/BPTest__Application_Images/img/bp-logo.svg" title="Home">
+      </a>
+      <h1>Go to home</h1>
+  </div>
+  <input id="HamburgerToggle" type="checkbox">
+  <label class="hamburger-icon" for="HamburgerToggle">
+      <span class="text">MENU</span>
+      <span class="bun-top"></span>
+      <span class="ham"></span>
+      <span class="bun-bottom"></span>
+  </label>
+  <div class="nav-container">
+      <nav class="app-main-nav">
+          <ul class="menu">
+              <li class="sell">
+                  <a ng-click="BPGlobalHeader.MoveToState('CustomerOrder_V2')" tabindex="1">Sell</a>
+              </li>
+              <li class="app-menu-toggle-icon Order">
+                  <input class="app-drop-menu-toggle" id="OrderSubMenu" type="checkbox">
+                  <label class="OrderSubMenu" for="OrderSubMenu" tabindex="1">Order</label>
+                  <menu class="drop-menu icon-grid">
+                      <a ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Unit ordering']['view']}" ng-click="BPGlobalHeader.createOrderAction('UO')" tabindex="2">
+                      <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/unit-order-icon-blue.svg">
+                      <span>Unit orders</span>
+                      </a>
+                      <a ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Vendor order']['create/modify']}" ng-click="BPGlobalHeader.createOrderAction('Vendor Order')" tabindex="2">
+                          <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/part-icon-blue.svg">
+                      <span>Part orders</span>
+                      </a>
+                      <a ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Vendor receiving']['create/modify']}" ng-click="BPGlobalHeader.createOrderAction('Vendor Receiving')" tabindex="2">
+                          <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/part-rec-icon-blue.svg">
+                          <span>Part receivings</span>
+                      </a>
+                      <a ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Vendor order']['create/modify']}" ng-click="BPGlobalHeader.createOrderAction('Return Vendor Order')" tabindex="2">
+                          <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/part-ret-icon-blue.svg">
+                          <span>Part returns</span>
+                      </a>
+                      <a ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Vendor invoicing']['create/modify']}" ng-click="BPGlobalHeader.createOrderAction('Vendor Invoicing')" tabindex="2">
+                          <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/part-invoice-icon-blue.svg">
+                          <span>Part invoices</span>
+                      </a>
+                  </menu>
+              </li>
+              <li class="Schedule">
+                  <a ng-click="BPGlobalHeader.loadSchedulerAction()" tabindex="1">Schedule</a>
+              </li>
+              <li class="Reporting">
+                  <a ng-click="BPGlobalHeader.MoveToState('HomeSearch')" tabindex="1">Reporting</a>
+              </li>
+          </ul>
+      </nav>
+      <nav class="app-secondary-nav app-menu-toggle-icon has-icon">
+          
+          <input class="app-drop-menu-toggle" id="AppDrawer" type="checkbox">
+          <label class="drawer-menu-icon tool-tip" for="AppDrawer" tabindex="1"><img alt="app drawer" src="/resource/1580114778000/BPTest__Application_Images/img/icons/grid-icon.svg"><span>Other tools</span></label>
+          <ul class="sec-menu">
+    <li><a ng-click="BPGlobalHeader.MoveToState('PayrollClocking')" tabindex="1">Payroll clocking</a></li>
+    <li><a ng-click="BPGlobalHeader.MoveToState('JobClocking')" tabindex="1">Job clocking</a></li>
+              <li><a ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Cash reconciliation'].submit}" ng-click="BPGlobalHeader.MoveToState('CashReconciliation')" tabindex="1">Cash reconciliation</a></li>
+          </ul>
+          <menu class="drop-menu drawer-menu icon-grid">
+          <h3>Other tools</h3>
+          
+  <a class="on-sec-menu" ng-click="BPGlobalHeader.MoveToState('PayrollClocking')" tabindex="2">
+              <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/payroll-icon.svg">
+              <span>Payroll clocking</span>
+          </a>
+  <a class="on-sec-menu" ng-click="BPGlobalHeader.MoveToState('JobClocking')" tabindex="2">
+              <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/job-clock-icon.svg">
+              <span>Job clocking</span>
+          </a>
+          <a class="on-sec-menu" ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Cash reconciliation'].submit}" ng-click="BPGlobalHeader.MoveToState('CashReconciliation')" tabindex="2">
+              <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/cash-rec-icon.svg">
+              <span>Cash reconciliation</span>
+          </a>
+          
+           <a class="part-count" ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Part inventory count']['enabled']}" ng-click="BPGlobalHeader.MoveToState('PartCount')" tabindex="2">
+               <!-- ngInclude: '/resource/1580114778000/BPTest__Application_Images/img/icons/part-count.svg' --><i ng-include="'/resource/1580114778000/BPTest__Application_Images/img/icons/part-count.svg'" class="ng-scope"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24">
+<path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M1,9V20a1,1,0,0,0,1,1H22a1,1,0,0,0,1-1V9"></path>
+<path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M23,9H1S1,3,12,3,23,9,23,9Z"></path>
+<path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M18,21H12V16h5.5a.5.5,0,0,1,.5.5Z"></path>
+<line fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="15" y1="16" x2="15" y2="18"></line>
+<path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M12,21H6V16.5a.5.5,0,0,1,.5-.5H12Z"></path>
+<line fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="9" y1="16" x2="9" y2="18"></line>
+<path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M15,16H9V12.5a.5.5,0,0,1,.5-.5h5a.5.5,0,0,1,.5.5Z"></path>
+<line fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="12" y1="12" x2="12" y2="14"></line>
+<line fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="10.5" y1="6" x2="13.5" y2="6"></line></svg>
+</i>
+              <span>Part counting</span>
+          </a>
+          <a ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Accounting settings export'].enabled}" ng-click="BPGlobalHeader.MoveToState('UserSetting', {Id: 'Import_And_Export'})" tabindex="2">
+              <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/import-export-icon.svg">
+              <span>Import &amp; export</span>
+          </a>
+          <a ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Price file import'].enabled}" ng-click="BPGlobalHeader.MoveToState('PriceFileImport')" tabindex="2">
+              <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/file-import-icon.svg">
+              <span>Price file import</span>
+          </a>
+          <!-- ngIf: BPGlobalHeader.IsFusionMappingEnabled --><a ng-click="BPGlobalHeader.MoveToState('FusionBenchmarking')" ng-if="BPGlobalHeader.IsFusionMappingEnabled" tabindex="2" class="ng-scope">
+              <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/fusion-bench-icon.svg">
+              <span>Fusion benchmarking</span>
+          </a><!-- end ngIf: BPGlobalHeader.IsFusionMappingEnabled -->
+          <!-- ngIf: BPGlobalHeader.isBRPEnabled --><a ng-click="BPGlobalHeader.MoveToState('DealerLookup')" ng-if="BPGlobalHeader.isBRPEnabled" tabindex="2" class="ng-scope">
+              <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/brp-icon.svg">
+              <span>Dealer lookup</span>
+          </a><!-- end ngIf: BPGlobalHeader.isBRPEnabled -->
+          </menu>
+      </nav>
+      <nav class="app-add-menu app-menu-toggle-icon has-icon">
+          <input class="app-drop-menu-toggle " id="AppAddMenu" type="checkbox">
+          <label class="tool-tip" for="AppAddMenu" tabindex="1"><img src="/resource/1580114778000/BPTest__Application_Images/img/icons/add-icon-sq.svg" title="Add New"><span>Add new</span></label>
+          <menu class="drop-menu add-menu-items icon-grid">
+          <h3>Add New</h3>
+          <a ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Customers'].enabled}" ng-click="BPGlobalHeader.MoveToState('AddEditCustomerV2')" tabindex="2">
+              <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/customer-icon.svg">
+              <span>Customer</span>
+          </a>
+          <a ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Vendors'].enabled}" ng-click="BPGlobalHeader.MoveToState('AddEditVendor')" tabindex="2">
+              <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/vendor-icon.svg">
+              <span>Vendor</span>
+          </a>
+          <a ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Parts'].enabled}" ng-click="BPGlobalHeader.MoveToState('AddEditPart')" tabindex="2">
+              <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/part-icon.svg">
+              <span>Part</span>
+          </a>
+          <a ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Labor'].enabled}" ng-click="BPGlobalHeader.MoveToState('AddEditLabour')" tabindex="2">
+              <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/labor-icon.svg">
+              <span>Labor code</span>
+          </a>
+          <a ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Kits'].enabled}" ng-click="BPGlobalHeader.MoveToState('AddEditKit')" tabindex="2">
+              <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/kit-icon.svg">
+              <span>Kit</span>
+          </a>
+          <a ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Fees'].enabled}" ng-click="BPGlobalHeader.MoveToState('AddEditFee')" tabindex="2">
+              <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/fee-icon.svg">
+              <span>Fee</span>
+          </a>
+          <a ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['Stock units'].enabled}" ng-click="BPGlobalHeader.MoveToState('AddEditUnit')" tabindex="2">
+              <img src="/resource/1580114778000/BPTest__Application_Images/img/icons/stock-unit-icon.svg">
+              <span>Stock unit</span>
+          </a>
+          </menu>
+      </nav>
+      <form class="app-search-form ng-pristine ng-valid">
+          <fieldset class="search-field"><span id="j_id0:j_id39:j_id40:j_id50">
+
+<div class="globalSearchElement ng-scope" id="globalSearchElement" ng-controller="globalSearchController" ng-init="globalSearchModal.setDefaultData();" ng-keydown="globalSearchModal.keyDownTabHandler($event)">
+  <!-- ngIf: globalSearchModal.isKeyword -->
+  <a class="close-overlay" ng-mousedown="globalSearchModal.hideDropDownClickOutSide($event)">&nbsp;</a>
+  <div class="globalSearchWrapperContainer">
+      <input autocomplete="off" class="search-input ng-pristine ng-untouched ng-valid" id="globalSearchStrInput" name="search-app" ng-change=" globalSearchModal.showKeywordsDropdown();" ng-class="{'globalSearchStr': globalSearchModal.calculatePaddingToAdjusInbox(globalSearchModal.isKeyword, globalSearchModal.keywordValue)}" ng-focus="globalSearchModal.GetIntialdata(); this.placeholder = '';globalSearchModal.showKeywordsDropdown(); globalSearchModal.isGlobalSearchInputFocused = true;" ng-keyup="globalSearchModal.keyPressed($event)" ng-model="globalSearchModal.globalSearchStr" ng-paste="globalSearchModal.keyPressed($event)" placeholder="Search" type="search">
+      <button class="search-button" tabindex="1"><img src="/resource/1580114778000/BPTest__Application_Images/img/icons/search-icon.svg"><span hidden="true">Search</span></button>
+      <a class="close-search" href="#" ng-mousedown="globalSearchModal.hideDropDownClickOutSide($event)">X</a>
+  </div>
+    
+  <!-- ngIf: globalSearchModal.showDropdown -->
+</div></span>
+          </fieldset>
+      </form>
+      <nav class="app-setting-nav">
+          <ul class="icon-menu">
+              <li>
+                  <a class="tool-tip" ng-click="BPGlobalHeader.openCommunityPage(BPGlobalHeader.communityURL)" tabindex="1">
+                      <img alt="Help &amp;#38; community" src="/resource/1580114778000/BPTest__Application_Images/img/icons/help-icon.svg">
+                      <span>Help &amp; community</span>
+                  </a>
+              </li>
+              <li class="app-menu-toggle-icon has-icon show-arrow">
+                  <input class="app-drop-menu-toggle" id="AppSettingMenu" type="checkbox">
+                  <label class="tool-tip right-zero business-name-tooltip" for="AppSettingMenu" tabindex="1"><img src="/resource/1580114778000/BPTest__Application_Images/img/icons/cog-icon.svg"><span><p class="M0 ng-binding">Test Jaipur</p><p class="M0">Account &amp; settings</p></span></label>
+                  <menu class="drop-menu app-setting-menu list-grid">
+                      <header class="user-info">
+                        <h4 class="user-name bp-set-text-ellipses ng-binding">Test Jaipur</h4>
+                          <h4 class="user-name">BP Admin</h4>
+                          <p class="user-co ng-hide" ng-hide="true">Close Motorcycles</p>
+                          <p class="user-type ng-hide" ng-hide="true">Admin group</p>
+                      </header>
+                      <a href="#" ng-hide="true" class="ng-hide"><span>My profile</span></a>
+                      <a ng-class="{'disabld-nav-bar-action': !GroupOnlyPermissions['System Settings'].enabled}" ng-click="BPGlobalHeader.MoveToState('UserSetting', {Id: 'Home'})"><span>System settings</span></a>
+                      <a class="log-out" ng-href="/secur/logout.jsp" href="/secur/logout.jsp"><span>Logout</span></a>
+                  </menu>
+              </li>
+          </ul>
+      </nav>
+  </div>
+  <div class="modal fade-scale bp-model-dialog honda-invoce-model SendSMSModal" id="HondaInvoceModel" role="dialog">
+  <div class="modal-dialog">
+      
+      <div class="modal-content col-xs-12 P0">
+      <div class="modal-header">
+      <button class="close" ng-click="BPGlobalHeader.hideHondaInvoceModelWindow()" type="button">
+          <span aria-hidden="true">
+              <!-- ngInclude: '/resource/1580114778000/BPTest__Application_Images/Icons/close.svg' --><i class="white_FFF svg_width ng-scope" ng-include="'/resource/1580114778000/BPTest__Application_Images/Icons/close.svg'"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+  <line fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="0.5" y1="0.5" x2="23.5" y2="23.5"></line>
+
+  <line fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="23.5" y1="0.5" x2="0.5" y2="23.5"></line>
+</svg>
+</i>
+          </span>
+      </button>
+      </div>
+          <div class="modal-body">
+             <div class="userGroupInfoArea">
+               <h1 class="heading-info H600">select an invoice from honda</h1>
+               <div class="send-order-drop-down">
+                  <div class="bp-cell bp-customerdropdown price-level-drop-down-value bp-unitSearch-area customerDropDown searchInputArea selectableDropdown" ng-class="{'showingOverlay' : BPGlobalHeader.isInvoiceFocusedState}">
+                     <input class="searchInput bp-new-input ng-pristine ng-untouched ng-valid" id="invoice-input-text" name="Price Level" ng-blur="BPGlobalHeader.isInvoiceFocusedState = false;" ng-focus="BPGlobalHeader.isInvoiceFocusedState = true" ng-keyup="BPGlobalHeader.changeSeletedInvoice($event)" ng-model="BPGlobalHeader.selectedInvoiceValue" placeholder="Please select" type="text">
+                     <!-- ngInclude: '/resource/1580114778000/BPTest__Application_Images/Icons/arrowDown.svg' --><i class="bp-blue downArrow ng-scope" ng-click="BPGlobalHeader.isInvoiceFocusedState = true" ng-include="'/resource/1580114778000/BPTest__Application_Images/Icons/arrowDown.svg'"><svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g fill="none" fill-rule="evenodd">
+      <polyline stroke-linecap="round" stroke-linejoin="round" points="2.29166667 5.29166667 9 12.875 15.7083333 5.29166667"></polyline>
+
+</g></svg>
+</i>
+                     <div class="searchResultOverlay" id="autocompleteScrollDiv">
+                         <ul>
+                             <!-- ngRepeat: hondaRec in BPGlobalHeader.hondaInvoiceList | filter : BPGlobalHeader.selectedInvoiceValue -->
+                         </ul>
+                     </div>
+                 </div>
+              </div>
+               <div class="text-center formBtn">
+                 <button class="bp-btn text-uppercase bp-btn-normal" id="text-now-btn" ng-click="BPGlobalHeader.hondaSelectedVRInvoice()" ng-disabled="!BPGlobalHeader.selectedInvoiceValue" disabled="disabled">
+                     import the invoice
+                 </button>  
+               </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="LoadingDiv ng-hide" ng-show="BPGlobalHeader.isLoading">
+  <div class="loadingIconContainer"><span id="j_id0:j_id39:j_id40:j_id54">
+<style>
+.bp-spinner {
+animation: rotator 1.4s linear infinite;
+}
+@keyframes rotator {
+0% {
+  transform: rotate(0deg);
+}
+100% {
+  transform: rotate(290deg);
+}
+}
+.path {
+stroke-dasharray: 187;
+stroke-dashoffset: 0;
+transform-origin: center;
+animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+}
+@keyframes colors {
+0% {
+  stroke: #00a3db;
+}
+50% {
+  stroke: #008dc1;
+}
+100% {
+  stroke: #36c79b;
+}
+}
+@keyframes dash {
+0% {
+  stroke-dashoffset: 187;
+}
+50% {
+  stroke-dashoffset: 46.75;
+  transform: rotate(135deg);
+}
+100% {
+  stroke-dashoffset: 187;
+  transform: rotate(360deg);
+}
+}
+</style>
+
+<svg class="bp-spinner" height="85px" viewBox="0 0 66 66" width="85px" xmlns="http://www.w3.org/2000/svg">
+ <circle class="path" cx="33" cy="33" fill="none" r="30" stroke-linecap="round" stroke-width="6"></circle>
+</svg></span>
+  </div>
+</div>
+</header>

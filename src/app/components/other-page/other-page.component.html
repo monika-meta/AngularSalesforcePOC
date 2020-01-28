@@ -1,0 +1,13 @@
+<h2>List of Contacts: </h2>
+
+<table style="width:100%">
+  <thead>
+    <th>ID</th>
+    <th>Name</th>
+  </thead> 
+  <tr  *ngFor="let con of contacts">
+    <th>{{con.Id}}</th>
+    <th>{{con.Name}}</th>
+  </tr>
+ 
+</table>

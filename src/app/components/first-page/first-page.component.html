@@ -1,0 +1,13 @@
+<h2>List of Account: </h2>
+
+<table style="width:100%">
+  <thead>
+    <th>ID</th>
+    <th>Name</th>
+  </thead> 
+  <tr  *ngFor="let acc of accounts">
+    <th>{{acc.Id}}</th>
+    <th>{{acc.Name}}</th>
+  </tr>
+ 
+</table>
